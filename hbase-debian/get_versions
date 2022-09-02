@@ -1,0 +1,10 @@
+set -euo pipefail
+[ -n "${DEBUG:-}" ] && set -x
+
+get_versions(){
+    curl -sS http://archive.apache.org/dist/hbase/ |
+    egrep -i -o 'href="[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
+    sed 's/href="//'
+}
+
+get_versions

@@ -1,0 +1,30 @@
+version: '3'
+services:
+  hbase-master:
+    image: jemichow/hbase:${VERSION:-latest}
+    command: master
+    ports:
+      - 16000:16000
+      - 16010:16010
+  hbase-regionserver:
+    image: jemichow/hbase:${VERSION:-latest}
+    command: regionserver
+    ports:
+      - 16030:16020
+      - 16201:16030
+  hbase-thrift:
+    image: jemichow/hbase:${VERSION:-latest}
+    command: thrift
+    ports:
+      - 9090:9090
+      - 9095:9095
+  hbase-stargate:
+    image: jemichow/hbase:${VERSION:-latest}
+    command: stargate
+    ports:
+      - 8080:8080
+      - 8085:8085
+  zookeeper:
+    image: jemichow/zookeeper:latest
+    ports:
+      - 2181:2181
